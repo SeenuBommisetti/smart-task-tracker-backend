@@ -1,0 +1,41 @@
+{
+  "name": "smart-task-tracker-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Smart Task Tracker with Insights",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint .",
+    "db:schema": "node scripts/runSchema.js",
+    "test": "node --test tests/**/*.test.js"
+  },
+  "keywords": [
+    "express",
+    "postgresql",
+    "jwt",
+    "tasks",
+    "analytics"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.18.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-promise": "^7.2.1",
+    "nodemon": "^3.1.9"
+  }
+}
