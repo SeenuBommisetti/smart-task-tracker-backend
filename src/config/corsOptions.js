@@ -1,5 +1,7 @@
 const ApiError = require('../utils/ApiError');
 
+const normalizeOrigin = (value) => value.trim().replace(/\/+$/, '');
+
 const parseOrigins = (value) => {
   if (!value) {
     return [];
@@ -7,7 +9,7 @@ const parseOrigins = (value) => {
 
   return value
     .split(',')
-    .map((origin) => origin.trim())
+    .map((origin) => normalizeOrigin(origin))
     .filter(Boolean);
 };
 
