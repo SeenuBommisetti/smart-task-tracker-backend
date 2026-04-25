@@ -1,7 +1,8 @@
 const ApiError = require('../utils/ApiError');
-const { verifyToken } = require('../utils/jwt');
+const authService = require('../services/authService');
+const { verifyAccessToken } = require('../services/supabaseAuthService');
 
-const authenticate = (req, res, next) => {
+const authenticate = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -11,11 +12,18 @@ const authenticate = (req, res, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    const payload = verifyToken(token);
-    req.user = payload;
+    const supabaseUser = await verifyAccessToken(token);
+    const user = await authService.syncSupabaseUser(supabaseUser);
+
+    req.user = {
+      userId: user.id,
+      email: user.email,
+      name: user.name
+    };
+
     next();
   } catch (error) {
-    next(new ApiError(401, 'Invalid or expired token'));
+    next(error.statusCode ? error : new ApiError(401, 'Invalid or expired token'));
   }
 };
 
