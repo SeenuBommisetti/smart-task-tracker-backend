@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "@supabase/supabase-js": "^2.57.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
